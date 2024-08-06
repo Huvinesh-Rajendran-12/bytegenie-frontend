@@ -29,7 +29,7 @@ const App = () => {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/query",
+        process.env.REACT_APP_BACKEND_PYTHON_API,
         {
           method: "POST",
           headers: {

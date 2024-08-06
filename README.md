@@ -7,85 +7,106 @@ This repository contains the frontend React application for my ByteGenie FullSta
 - React 18
 - JavaScript
 - Tailwind CSS
-- React Query for state management
-- Bun as the build tool
+- Native fetch API for network requests
+- Bun as the JavaScript runtime and package manager
+- Vite as the build tool
+
+## Prerequisites
+
+- Bun: Make sure you have Bun installed. If not, you can install it by following the instructions on the [official Bun website](https://bun.sh/).
 
 ## Installation and Setup
 
 1. Clone the repository:
 
    ```
-   git clone https://github.com/your-username/bytegenie-ui.git
-   cd bytegenie-ui
+   git clone https://github.com/Huvinesh-Rajendran-12/bytegenie-frontend.git
+   cd bytegenie-frontend
    ```
 
 2. Install dependencies:
 
    ```
-   npm install
+   bun install
    ```
 
 3. Set up environment variables:
    Create a `.env` file in the root directory and add the following:
 
    ```
-   VITE_API_URL=http://localhost:8000
+   BACKEND_PYTHON_API=http://127.0.0.1:8000/query
    ```
 
 4. Run the development server:
    ```
-   npm run dev
+   bun run start
    ```
 
-The application should now be running on `http://localhost:5173`.
+The application should now be running on `http://localhost:3000` (or another port if 3000 is occupied).
 
 ## Building for Production
 
 To create a production build:
 
 ```
-npm run build
+bun run build
 ```
 
 The built files will be in the `dist` directory.
+
+To preview the production build locally:
+
+```
+bun run preview
+```
 
 ## Key Functionalities
 
 The UI provides the following key functionalities:
 
 1. Natural language query input
-2. Real-time query processing feedback
-3. Formatted display of query results
-4. Interactive data visualization (where applicable)
-5. User-friendly error handling and suggestions
+2. Real-time query processing feedback, such as the different stages of query processing handled by the model.
+3. Formatted display of query results, using tables, list etc.
+4. User-friendly error handling and suggestions
 
-## API Endpoints
+## API Interaction
 
-The UI interacts with the following API endpoints:
+The UI interacts with the backend API using a single endpoint:
 
-1. `/query` - POST request to submit natural language queries
-2. `/status` - GET request to check query processing status
-3. `/results` - GET request to fetch formatted query results
+- `/query` - POST request to submit natural language queries and receive results
+
+The application uses the native fetch API to make this request, allowing for efficient and straightforward network communication.
 
 ## Key Challenges I Faced
 
 During the development of the front-end, I faced the following challenges:
 
-1. Implementing real-time updates for long-running queries
-2. Creating intuitive visualizations for various types of data
-3. Handling and displaying errors in a user-friendly manner
-4. Optimizing performance for large result sets
+1. Implementing real-time updates for long-running queries using fetch API
+2. Handling streaming responses from the backend, the streaming responses had to be in the correct format to be displayed in the frontend.
+3. Managing state for ongoing queries and results without additional state management libraries
+4. Displaying structured data results in a user-friendly manner
 5. Ensuring responsive design for various screen sizes
 
 ## Future Improvements
 
 If I had more time, I would improve the front-end in the following ways:
 
-1. Implement advanced data visualization options (e.g., interactive charts, graphs)
+1. Implement data visualization options (e.g., charts, graphs) for applicable query results
 2. Add a query history feature for easy access to previous searches
-3. Develop a more sophisticated autocomplete system for query input
-4. Implement user authentication and personalized dashboards
-5. Add offline support and progressive web app (PWA) functionality
-6. Improve accessibility features for users with disabilities
-7. Implement internationalization (i18n) for multi-language support
-8. Add unit and integration tests for all components
+3. Develop an autocomplete system for query input based on common patterns
+4. Implement user authentication for personalized experiences
+5. Implement error boundary components for better error handling
+6. Add unit and integration tests for all components
+7. Optimize the build process further using Bun's capabilities
+8. Explore advanced features of the fetch API, such as AbortController for cancellable requests
+
+## Notes on Using Bun
+
+Bun offers several advantages over traditional Node.js setups:
+
+1. Faster installation times for dependencies
+2. Improved performance for JavaScript execution
+3. Built-in testing capabilities
+4. Native support for `.env` files
+
+To leverage these benefits, I've adjusted the scripts in `package.json` to use Bun. If you encounter any issues related to Bun, please refer to the [official Bun documentation](https://bun.sh/docs).
