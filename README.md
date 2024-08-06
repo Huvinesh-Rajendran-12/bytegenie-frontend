@@ -5,11 +5,10 @@ This repository contains the frontend React application for my ByteGenie FullSta
 ## Technology Stack
 
 - React 18
-- TypeScript
+- JavaScript
 - Tailwind CSS
-- Axios for API calls
 - React Query for state management
-- Vite as the build tool
+- Bun as the build tool
 
 ## Installation and Setup
 
