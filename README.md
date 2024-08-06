@@ -39,7 +39,7 @@ This repository contains the frontend React application for my ByteGenie FullSta
    Create a `.env` file in the root directory and add the following:
 
    ```
-   BACKEND_PYTHON_API=http://127.0.0.1:8000/query
+   REACT_APP_BACKEND_PYTHON_API=http://127.0.0.1:8000/query
    ```
 
 4. Run the development server:
