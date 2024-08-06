@@ -2,6 +2,11 @@
 
 This repository contains the frontend React application for my ByteGenie FullStack Developer Test. The UI allows users to interact with the API using natural language queries and displays the results in a user-friendly format.
 
+## Demo 
+
+![FB64CFF5-D52E-4433-B4C4-81853E4DB4EF_1_102_o](https://github.com/user-attachments/assets/56e59d4d-55a5-402c-9769-5f9e03d3dacb)
+
+
 ## Technology Stack
 
 - React 18
