@@ -4,8 +4,7 @@ This repository contains the frontend React application for my ByteGenie FullSta
 
 ## Demo 
 
-![FB64CFF5-D52E-4433-B4C4-81853E4DB4EF_1_102_o](https://github.com/user-attachments/assets/56e59d4d-55a5-402c-9769-5f9e03d3dacb)
-
+[![ByteGenie Demo](https://img.youtube.com/vi/WNhLddY2rBU/0.jpg)](https://www.youtube.com/watch?v=WNhLddY2rBU)
 
 ## Technology Stack
 
