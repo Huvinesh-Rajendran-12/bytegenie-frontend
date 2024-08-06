@@ -83,6 +83,20 @@ The UI interacts with the backend API using a single endpoint:
 
 The application uses the native fetch API to make this request, allowing for efficient and straightforward network communication.
 
+### List of Natural Language Queries that works well:
+
+- Find me companies that are attending finance related events.
+- List the email address for the people working in Singapore.
+- Find me the average revenue of companies in the Financial sector.
+- Find me the sponsors for events occurring in the next 6 months.
+- Find me the partners for events occurring in the next 6 months.
+- Find me events that will occur in the year 2025.
+- Find me the events that are being attended by technology companies.
+- List the people working in Singapore for more than a year.
+- List the email address for the people working in Singapore for more than a year.
+- Find me the number of companies attending events occurring in 2025 up until March.
+- Find me the number of events occurring in 2025 up until May.
+
 ## Key Challenges I Faced
 
 During the development of the front-end, I faced the following challenges:
