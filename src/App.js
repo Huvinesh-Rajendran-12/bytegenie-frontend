@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import ChatInput from "./components/ChatInput";
 import MessageList from "./components/MessageList";
 import StepsList from "./components/StepsList";
-import FormattedResponse from "./components/FormattedResponse";
 import { motion, AnimatePresence } from "framer-motion";
 
 const App = () => {
   const [messages, setMessages] = useState([]);
   const [steps, setSteps] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [sessionId, setSessionId] = useState(null);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -35,9 +35,17 @@ const App = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ question: message }),
+          body: JSON.stringify({
+            question: message,
+            session_id: sessionId,
+          }),
         },
       );
+
+      const newSessionId = response.headers.get("X-Session-ID");
+      if (newSessionId) {
+        setSessionId(newSessionId);
+      }
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -64,7 +72,11 @@ const App = () => {
 
       setMessages((prevMessages) => [
         ...prevMessages,
-        { text: fullResponse, sender: "ai", formatted: true },
+        {
+          text: fullResponse,
+          sender: "ai",
+          formatted: true,
+        },
       ]);
     } catch (error) {
       console.error("Error:", error);
@@ -96,10 +108,7 @@ const App = () => {
           className="w-3/5 bg-gradient-to-b from-blue-900 to-teal-800 text-white flex flex-col"
         >
           <div className="flex-grow overflow-y-auto p-4">
-            <MessageList
-              messages={messages}
-              FormattedResponse={FormattedResponse}
-            />
+            <MessageList messages={messages} />
             <div ref={messagesEndRef} />
           </div>
           <div className="p-4 border-t border-teal-700">

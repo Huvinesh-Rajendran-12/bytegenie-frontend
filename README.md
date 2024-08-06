@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# ByteGenie UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the frontend React application for my ByteGenie FullStack Developer Test. The UI allows users to interact with the API using natural language queries and displays the results in a user-friendly format.
 
-## Available Scripts
+## Technology Stack
 
-In the project directory, you can run:
+- React 18
+- TypeScript
+- Tailwind CSS
+- Axios for API calls
+- React Query for state management
+- Vite as the build tool
 
-### `npm start`
+## Installation and Setup
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+   ```
+   git clone https://github.com/your-username/bytegenie-ui.git
+   cd bytegenie-ui
+   ```
 
-### `npm test`
+2. Install dependencies:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```
+   npm install
+   ```
 
-### `npm run build`
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add the following:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```
+   VITE_API_URL=http://localhost:8000
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Run the development server:
+   ```
+   npm run dev
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The application should now be running on `http://localhost:5173`.
 
-### `npm run eject`
+## Building for Production
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+To create a production build:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm run build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The built files will be in the `dist` directory.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Key Functionalities
 
-## Learn More
+The UI provides the following key functionalities:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Natural language query input
+2. Real-time query processing feedback
+3. Formatted display of query results
+4. Interactive data visualization (where applicable)
+5. User-friendly error handling and suggestions
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API Endpoints
 
-### Code Splitting
+The UI interacts with the following API endpoints:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. `/query` - POST request to submit natural language queries
+2. `/status` - GET request to check query processing status
+3. `/results` - GET request to fetch formatted query results
 
-### Analyzing the Bundle Size
+## Key Challenges I Faced
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+During the development of the front-end, I faced the following challenges:
 
-### Making a Progressive Web App
+1. Implementing real-time updates for long-running queries
+2. Creating intuitive visualizations for various types of data
+3. Handling and displaying errors in a user-friendly manner
+4. Optimizing performance for large result sets
+5. Ensuring responsive design for various screen sizes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Future Improvements
 
-### Advanced Configuration
+If I had more time, I would improve the front-end in the following ways:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Implement advanced data visualization options (e.g., interactive charts, graphs)
+2. Add a query history feature for easy access to previous searches
+3. Develop a more sophisticated autocomplete system for query input
+4. Implement user authentication and personalized dashboards
+5. Add offline support and progressive web app (PWA) functionality
+6. Improve accessibility features for users with disabilities
+7. Implement internationalization (i18n) for multi-language support
+8. Add unit and integration tests for all components

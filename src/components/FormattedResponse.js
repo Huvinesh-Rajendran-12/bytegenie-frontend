@@ -1,77 +1,92 @@
 import React from "react";
 
 const FormattedResponse = ({ response }) => {
-  const { summary, table } = parseResponse(response);
+  const renderTable = (table) => {
+    const rows = table
+      .split("\n")
+      .map((row) => row.trim())
+      .filter((row) => row !== "");
+    const headers = rows[0]
+      .split("|")
+      .map((header) => header.trim());
+    const data = rows
+      .slice(2)
+      .map((row) => row.split("|").map((cell) => cell.trim()));
+
+    return (
+      <table className="min-w-full bg-white border border-gray-300 shadow-sm rounded-lg overflow-hidden">
+        <thead className="bg-gray-100">
+          <tr>
+            {headers.map((header, index) => (
+              <th
+                key={index}
+                className="px-4 py-2 text-left text-sm font-semibold text-gray-700"
+              >
+                {header}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, rowIndex) => (
+            <tr
+              key={rowIndex}
+              className={
+                rowIndex % 2 === 0 ? "bg-gray-50" : "bg-white"
+              }
+            >
+              {row.map((cell, cellIndex) => (
+                <td
+                  key={cellIndex}
+                  className="px-4 py-2 text-sm text-gray-700"
+                >
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  };
+
+  const renderContent = (content) => {
+    const parts = content.split(/((?:\n\* .*?)+)/s);
+    return parts.map((part, index) => {
+      if (part.startsWith("\n* ")) {
+        const items = part
+          .split("\n* ")
+          .filter((item) => item.trim() !== "");
+        return (
+          <ul key={index} className="list-disc list-inside mb-4">
+            {items.map((item, itemIndex) => (
+              <li key={itemIndex} className="text-gray-700 mb-2">
+                {item.trim()}
+              </li>
+            ))}
+          </ul>
+        );
+      } else if (part.startsWith("<table>")) {
+        return (
+          <div key={index} className="mb-4">
+            {renderTable(part)}
+          </div>
+        );
+      } else {
+        return (
+          <p key={index} className="text-gray-700 mb-4">
+            {part.trim()}
+          </p>
+        );
+      }
+    });
+  };
 
   return (
-    <div className="bg-white bg-opacity-10 rounded-lg shadow-md p-6 mb-4">
-      <div className="prose max-w-none mb-6">
-        {summary.split("\n").map((paragraph, index) => (
-          <p key={index} className="mb-2 text-gray-100">
-            {paragraph}
-          </p>
-        ))}
-      </div>
-      {table && (
-        <div className="overflow-x-auto bg-white bg-opacity-5 rounded-lg">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-teal-800 bg-opacity-50">
-              <tr>
-                {table.headers.map((header, index) => (
-                  <th
-                    key={index}
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-teal-100 uppercase tracking-wider"
-                  >
-                    {header}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="bg-black bg-opacity-10 divide-y divide-gray-500">
-              {table.rows.map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                  {row.map((cell, cellIndex) => (
-                    <td
-                      key={cellIndex}
-                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-200"
-                    >
-                      {cell}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+    <div className="bg-white rounded-lg shadow-md p-6">
+      {renderContent(response)}
     </div>
   );
-};
-
-const parseResponse = (response) => {
-  const parts = response.split(
-    "Here's a table summarizing the results:",
-  );
-  const summary = parts[0].trim();
-  let table = null;
-
-  if (parts.length > 1) {
-    const tableLines = parts[1].trim().split("\n");
-    const headers = tableLines[0]
-      .split("|")
-      .map((h) => h.trim())
-      .filter(Boolean);
-    const rows = tableLines.slice(2).map((line) =>
-      line
-        .split("|")
-        .map((cell) => cell.trim())
-        .filter(Boolean),
-    );
-    table = { headers, rows };
-  }
-
-  return { summary, table };
 };
 
 export default FormattedResponse;

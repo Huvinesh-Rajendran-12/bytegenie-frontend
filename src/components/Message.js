@@ -1,26 +1,18 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 const Message = ({ message }) => {
-  const isUser = message.sender === "user";
+  const isAI = message.sender === "ai";
+  const messageClass = isAI
+    ? "bg-teal-100 bg-opacity-30 text-white"
+    : "bg-blue-100 bg-opacity-30 text-white";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className={`flex ${isUser ? "justify-end" : "justify-start"} mb-4`}
+    <div
+      className={`p-4 rounded-lg shadow-md ${messageClass} backdrop-blur-sm`}
     >
-      <div
-        className={`max-w-xs md:max-w-md lg:max-w-lg xl:max-w-xl rounded-lg p-3 ${
-          isUser
-            ? "bg-teal-600 text-white"
-            : "bg-gradient-to-r from-blue-100 to-teal-100 text-gray-800"
-        }`}
-      >
-        {message.text}
-      </div>
-    </motion.div>
+      <p className="font-bold mb-2">{isAI ? "AI" : "You"}</p>
+      <p>{message.text}</p>
+    </div>
   );
 };
 
